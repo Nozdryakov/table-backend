@@ -20,18 +20,6 @@ class ProductFactory extends Factory
      * @return array<string, mixed>
      */
 
-
-//    public function definition(): array
-//    {
-//        $numbers1 = range(1, 1500);
-//        shuffle($numbers1);
-//        $numbers2 = range(1, 2000);
-//        shuffle($numbers2);
-//        return  [
-//            'team_area_id' => array_pop($numbers1),
-//            'item_number_id' => array_pop($numbers2)
-//        ];
-//    }
     public function definition(): array
     {
         do {

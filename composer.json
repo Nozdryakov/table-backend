@@ -1,7 +1,7 @@
 {
     "name": "laravel/laravel",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "The skeleton Application for the Laravel framework.",
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
@@ -24,7 +24,9 @@
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
+            "Database\\Seeders\\": "database/seeders/",
+            "Application\\": "Application",
+            "Infrastructure\\": "Infrastructure"
         }
     },
     "autoload-dev": {

@@ -21,7 +21,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Here you may configure the connection information for each server that
-    | is used by your application. A default configuration has been added
+    | is used by your Application. A default configuration has been added
     | for each back-end shipped with Laravel. You are free to add more.
     |
     | Drivers: "sync", "database", "beanstalkd", "sqs", "redis", "null"
@@ -80,7 +80,7 @@ return [
     |
     | The following options configure the database and table that store job
     | batching information. These options can be updated to any database
-    | connection and table which has been defined by your application.
+    | connection and table which has been defined by your Application.
     |
     */
 
