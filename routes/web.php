@@ -19,3 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/get-table', [ApplicationController::class, 'index']);
+
+Route::get('/ex', function () {
+    return "Efim";
+});

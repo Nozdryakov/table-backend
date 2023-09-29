@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('heads_of_departments', function (Blueprint $table) {
             $table->increments('head_of_dep_id');
-            $table->string('surname', 60)->nullable(false);
-            $table->string('name', 60)->nullable(false);
-            $table->string('f_name', 60)->nullable(false);
+            $table->string('surname', 255)->nullable(false);
+            $table->string('name', 255)->nullable(false);
+            $table->string('f_name', 255)->nullable(false);
             $table->tinyInteger('gender')->nullable(false);
             $table->date('date_of_birth')->nullable(false);
             $table->date('date_of_start')->nullable(false);

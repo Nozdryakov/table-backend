@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('departments', function (Blueprint $table) {
             $table->increments('dep_id');
-            $table->string('title',120)->nullable(false);
+            $table->string('title',255)->nullable(false);
             $table->unsignedInteger('head_of_dep_id')->nullable(false)->unique();
             $table->foreign('head_of_dep_id')->references('head_of_dep_id')->on('heads_of_departments')->onDelete('cascade');
             $table->timestamps();

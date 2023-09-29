@@ -2,10 +2,6 @@
 
 namespace App\Console\Seeders;
 
-use Database\Seeders\AreaSeeder;
-use Database\Seeders\DepartmentSeeder;
-use Database\Seeders\HeadOfAreaSeeder;
-use Database\Seeders\HeadOfDepartmentSeeder;
 use Illuminate\Console\Command;
 
 class UpSeederCommand extends Command

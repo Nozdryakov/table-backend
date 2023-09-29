@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('items_numbers', function (Blueprint $table) {
             $table->increments('item_number_id');
-            $table->string('u_code', 60)->nullable(true);
+            $table->string('u_code', 255)->nullable(true);
             $table->unsignedInteger('t_item_id')->nullable(false);
             $table->timestamps();
             $table->foreign('t_item_id')->references('t_item_id')->on('types_of_items')->onDelete('cascade');

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('types_of_items', function (Blueprint $table) {
             $table->increments('t_item_id');
-            $table->string('title',120)->nullable(false);
+            $table->string('title',255)->nullable(false);
             $table->timestamps();
         });
     }

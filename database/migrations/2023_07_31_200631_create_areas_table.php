@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('areas', function (Blueprint $table) {
             $table->increments('area_id');
-            $table->string('title',120)->nullable(false);
+            $table->string('title',255)->nullable(false);
             $table->unsignedInteger('dep_id')->nullable(false);
             $table->unsignedInteger('head_of_area_id')->nullable(false)->unique();
             $table->timestamps();
