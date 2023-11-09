@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Table\HeadOfDepartmentRequest;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+
 use Application\UseCases\AreaUseCases\GetAreaUseCase;
 use Application\UseCases\DepartmentUseCases\GetDepartmentUseCase;
 use Application\UseCases\HeadOfAreaUsecases\GetHeadOfAreaUseCase;
@@ -12,6 +16,7 @@ use Application\UseCases\ProductUseCases\GetProductUseCase;
 use Application\UseCases\TeamAreaUseCases\GetTeamAreaUseCase;
 use Application\UseCases\TeamUseCases\GetTeamUseCase;
 use Application\UseCases\TypeOfItemUseCases\GetTypesOfItemUseCase;
+
 
 
 class ApplicationController extends Controller
@@ -45,20 +50,53 @@ class ApplicationController extends Controller
     }
 
 
-    public function index():array
+    public function index(): array
     {
         return [
             'heads_of_department' => $this->getHeadOfDepartmentUseCase->execute(),
             'departments' => $this->getDepartmentUseCase->execute(),
             'heads_of_area' => $this->getHeadOfAreaUseCase->execute(),
-            'areas'=> $this->getAreaUseCase->execute(),
-            'teams'=> $this->getTeamUseCase->execute(),
-            'team_areas'=>$this->getTeamAreaUseCase->execute(),
-            'types_of_items'=>$this->getTypesOfItemUseCase->execute(),
-            'items_numbers'=>$this->getItemNumberUseCase->execute(),
-            'products'=>$this->getProductUseCase->execute()
-
+            'areas' => $this->getAreaUseCase->execute(),
+            'teams' => $this->getTeamUseCase->execute(),
+            'team_areas' => $this->getTeamAreaUseCase->execute(),
+            'types_of_items' => $this->getTypesOfItemUseCase->execute(),
+            'items_numbers' => $this->getItemNumberUseCase->execute(),
+            'products' => $this->getProductUseCase->execute()
         ];
     }
 
+
+
+    public function createHeadOfDep(HeadOfDepartmentRequest $request): array
+    {
+        try {
+            $data = $request->validated();
+
+            $result = $this->createHeadOfDepartmentUseCase->execute(
+                $data['surname'],
+                $data['name'],
+                $data['f_name'],
+                $data['gender'],
+                $data['date_of_birth'],
+                $data['date_of_start']
+            );
+
+            return ['create' => $result];
+        } catch (\Exception $e) {
+            return ['error' => $e->getMessage()];
+        }
+    }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
