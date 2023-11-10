@@ -13,17 +13,7 @@ class HeadOfDepartmentRepository implements HeadsOfDepartmentInterface
     public function getHeadOfDepartment(Request $request): array
     {
         $page = $request->input('page', 1);
-        $data = DB::table('heads_of_departments')->paginate(10, ['*'], 'page', $page)->toArray();
-
-        return [
-            'current_page' => $data['current_page'],
-            'data' => $data['data'],
-            'first_page_url' => $data['first_page_url'],
-            'from' => $data['from'],
-            'last_page' => $data['last_page'],
-            'last_page_url' => $data['last_page_url'],
-            'links' => $data['links'],
-        ];
+        return DB::table('heads_of_departments')->paginate(50, ['*'], 'page', $page)->toArray();
     }
 
     public function createHeadOfDepartment(string $surname, string $name, string $f_name, int $gender, string $date_of_birth, string $date_of_start): bool
@@ -36,8 +26,7 @@ class HeadOfDepartmentRepository implements HeadsOfDepartmentInterface
         $headsOfDepartment->date_of_birth = $date_of_birth;
         $headsOfDepartment->date_of_start = $date_of_start;
         $headsOfDepartment->created_at = now();
-        $result = $headsOfDepartment->save();
-        return $result;
+        return $headsOfDepartment->save();
     }
     public function deleteHeadOfDepartment($id):bool
     {
@@ -60,8 +49,8 @@ class HeadOfDepartmentRepository implements HeadsOfDepartmentInterface
         $headsOfDepartment->date_of_birth = $date_of_birth;
         $headsOfDepartment->date_of_start = $date_of_start;
         $headsOfDepartment->updated_at = now();
-        $result = $headsOfDepartment->save();
-        return $result;
+        return  $headsOfDepartment->save();
+
     }
 
 
