@@ -43,4 +43,5 @@ Route::group([
 Route::get('/get-table', [ApplicationController::class, 'index']);
 Route::post('/register', IndexController::class);
 Route::post('/head/create', [ApplicationController::class, 'createHeadOfDep'])->name('head.create');
+Route::post('/head/delete', [ApplicationController::class, 'deleteHeadOfDep'])->name('head.delete');
 

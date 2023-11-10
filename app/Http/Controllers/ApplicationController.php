@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Table\HeadOfDepartmentRequest;
+use Application\UseCases\HeadOfDepartmentUseCases\DeleteHeadOfDepartmentUseCase;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -31,6 +32,7 @@ class ApplicationController extends Controller
     private GetItemNumberUseCase $getItemNumberUseCase;
     private GetProductUseCase $getProductUseCase;
     private CreateHeadOfDepartmentUseCase $createHeadOfDepartmentUseCase;
+    private DeleteHeadOfDepartmentUseCase $deleteHeadOfDepartmentUseCase;
 
 
     public function __construct()
@@ -46,6 +48,7 @@ class ApplicationController extends Controller
         $this->getProductUseCase = app(GetProductUseCase::class);
 
         $this->createHeadOfDepartmentUseCase = app(CreateHeadOfDepartmentUseCase::class);
+        $this->deleteHeadOfDepartmentUseCase = app(DeleteHeadOfDepartmentUseCase::class);
 
     }
 
@@ -80,12 +83,37 @@ class ApplicationController extends Controller
                 $data['date_of_birth'],
                 $data['date_of_start']
             );
-
             return ['create' => $result];
         } catch (\Exception $e) {
             return ['error' => $e->getMessage()];
         }
     }
+    public function deleteHeadOfDep(Request $request)
+    {
+        $id = $request->input('id');
+
+        if (empty($id)) {
+            return [
+                'error' => true,
+                'delete' => false,
+            ];
+        }
+
+        $status = $this->deleteHeadOfDepartmentUseCase->execute($id);
+
+        if ($status) {
+            return [
+                'error' => false,
+                'delete' => true,
+            ];
+        }
+
+        return [
+            'error' => true,
+            'delete' => false,
+        ];
+    }
+
 
 
 }

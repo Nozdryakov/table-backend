@@ -26,4 +26,14 @@ class HeadOfDepartmentRepository implements HeadsOfDepartmentInterface
         $result = $headsOfDepartment->save();
         return $result;
     }
+    public function deleteHeadOfDepartment($id):bool
+    {
+        $headOfDep = HeadsOfDepartment::find($id);
+
+        if (empty($headOfDep)) {
+            return false;
+        }
+        return $headOfDep->delete();
+    }
+
 }
