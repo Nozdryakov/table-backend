@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Table\HeadOfDepartmentRequest;
 use Application\UseCases\HeadOfDepartmentUseCases\DeleteHeadOfDepartmentUseCase;
+use Application\UseCases\HeadOfDepartmentUseCases\UpdateHeadOfDepartmentUseCase;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -33,6 +34,7 @@ class ApplicationController extends Controller
     private GetProductUseCase $getProductUseCase;
     private CreateHeadOfDepartmentUseCase $createHeadOfDepartmentUseCase;
     private DeleteHeadOfDepartmentUseCase $deleteHeadOfDepartmentUseCase;
+    private UpdateHeadOfDepartmentUseCase $updateHeadOfDepartmentUseCase;
 
 
     public function __construct()
@@ -49,6 +51,7 @@ class ApplicationController extends Controller
 
         $this->createHeadOfDepartmentUseCase = app(CreateHeadOfDepartmentUseCase::class);
         $this->deleteHeadOfDepartmentUseCase = app(DeleteHeadOfDepartmentUseCase::class);
+        $this->updateHeadOfDepartmentUseCase = app(UpdateHeadOfDepartmentUseCase::class);
 
     }
 
@@ -112,6 +115,27 @@ class ApplicationController extends Controller
             'error' => true,
             'delete' => false,
         ];
+    }
+
+    public function updateHeadOfDep(HeadOfDepartmentRequest $request)
+    {
+        try {
+            $data = $request->validated();
+            $id = $request->input('id');
+
+            $result = $this->updateHeadOfDepartmentUseCase->execute(
+                $id,
+                $data['surname'],
+                $data['name'],
+                $data['f_name'],
+                $data['gender'],
+                $data['date_of_birth'],
+                $data['date_of_start']
+            );
+            return ['update' => $result];
+        } catch (\Exception $e) {
+            return ['error' => $e->getMessage()];
+        }
     }
 
 
