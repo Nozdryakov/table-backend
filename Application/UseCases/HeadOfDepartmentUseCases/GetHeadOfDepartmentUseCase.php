@@ -2,19 +2,21 @@
 
 namespace Application\UseCases\HeadOfDepartmentUseCases;
 
+use Illuminate\Http\Request;
+use Infrastructure\Interfaces\HeadsOfDepartmentInterface;
 use Infrastructure\Repositories\HeadOfDepartmentRepository;
 
 class GetHeadOfDepartmentUseCase
 {
-    private $headOfDepartmentRepository;
+    private HeadsOfDepartmentInterface $headOfDepartmentRepository;
 
     public function __construct(HeadOfDepartmentRepository $headOfDepartmentRepository)
     {
         $this->headOfDepartmentRepository = $headOfDepartmentRepository;
     }
 
-    public function execute(): array
+    public function execute(Request $request): array
     {
-        return $this->headOfDepartmentRepository->getHeadsOfDepartment();
+        return $this->headOfDepartmentRepository->getHeadOfDepartment($request);
     }
 }

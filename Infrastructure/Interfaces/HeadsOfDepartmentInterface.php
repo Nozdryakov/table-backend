@@ -2,9 +2,11 @@
 
 namespace Infrastructure\Interfaces;
 
+use Illuminate\Http\Request;
+
 interface HeadsOfDepartmentInterface
 {
-    public function getHeadsOfDepartment(): array;
+    public function getHeadOfDepartment(Request $request): array;
 
     public function createHeadOfDepartment(string $surname, string $name, string $f_name, int $gender, string $date_of_birth, string $date_of_start): bool;
     public function deleteHeadOfDepartment(int $id): bool;

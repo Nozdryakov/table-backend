@@ -2,17 +2,30 @@
 
 namespace Infrastructure\Repositories;
 
+use Illuminate\Http\Request;
 use Infrastructure\Interfaces\HeadsOfDepartmentInterface;
 use App\Models\HeadsOfDepartment;
 use Illuminate\Support\Facades\DB;
 
+
 class HeadOfDepartmentRepository implements HeadsOfDepartmentInterface
 {
-    public function getHeadsOfDepartment(): array
+    public function getHeadOfDepartment(Request $request): array
     {
-        return DB::table('heads_of_departments')->get()->toArray();
+        $page = $request->input('page', 1);
+        $data = DB::table('heads_of_departments')->paginate(10, ['*'], 'page', $page)->toArray();
 
+        return [
+            'current_page' => $data['current_page'],
+            'data' => $data['data'],
+            'first_page_url' => $data['first_page_url'],
+            'from' => $data['from'],
+            'last_page' => $data['last_page'],
+            'last_page_url' => $data['last_page_url'],
+            'links' => $data['links'],
+        ];
     }
+
     public function createHeadOfDepartment(string $surname, string $name, string $f_name, int $gender, string $date_of_birth, string $date_of_start): bool
     {
         $headsOfDepartment = new HeadsOfDepartment();

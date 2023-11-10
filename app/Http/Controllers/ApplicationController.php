@@ -56,18 +56,18 @@ class ApplicationController extends Controller
     }
 
 
-    public function index(): array
+    public function index(Request $request): array
     {
         return [
-            'heads_of_department' => $this->getHeadOfDepartmentUseCase->execute(),
-            'departments' => $this->getDepartmentUseCase->execute(),
-            'heads_of_area' => $this->getHeadOfAreaUseCase->execute(),
-            'areas' => $this->getAreaUseCase->execute(),
-            'teams' => $this->getTeamUseCase->execute(),
-            'team_areas' => $this->getTeamAreaUseCase->execute(),
-            'types_of_items' => $this->getTypesOfItemUseCase->execute(),
-            'items_numbers' => $this->getItemNumberUseCase->execute(),
-            'products' => $this->getProductUseCase->execute()
+            'heads_of_department' => $this->getHeadOfDepartmentUseCase->execute($request),
+//            'departments' => $this->getDepartmentUseCase->execute(),
+//            'heads_of_area' => $this->getHeadOfAreaUseCase->execute(),
+//            'areas' => $this->getAreaUseCase->execute(),
+//            'teams' => $this->getTeamUseCase->execute(),
+//            'team_areas' => $this->getTeamAreaUseCase->execute(),
+//            'types_of_items' => $this->getTypesOfItemUseCase->execute(),
+//            'items_numbers' => $this->getItemNumberUseCase->execute(),
+//            'products' => $this->getProductUseCase->execute()
         ];
     }
 
